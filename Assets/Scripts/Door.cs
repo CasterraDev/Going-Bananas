@@ -28,7 +28,7 @@ public class Door : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (gm != null) gm = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+        gm = GameObject.Find("GameMaster").GetComponent<GameMaster>();
         if (Input.GetKeyDown(KeyCode.E) && gm.bananas >= bananasToUnlock && collision.CompareTag("Player"))
         {
             Debug.Log("Next Scene");

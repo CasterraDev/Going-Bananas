@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float spd = 10f;
     public float jumpForce = 5f;
     public LayerMask whatIsGround;
+    public Animator anim;
 
     private BoxCollider2D boxCol;
     private Rigidbody2D rb;
@@ -34,10 +35,14 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded() && Input.GetKey(KeyCode.Space))
         {
             rb.velocity += Vector2.up * jumpForce;
+            anim.SetTrigger("Jump");
         }
 
         if (h > 0 && !facingRight) Flip();
         if (h < 0 && facingRight) Flip();
+
+        if (h != 0 && IsGrounded()) anim.SetTrigger("Walking");
+        if (h == 0 && IsGrounded()) anim.SetTrigger("Idle");
     }
 
     bool IsGrounded()
