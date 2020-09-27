@@ -5,12 +5,14 @@ using UnityEngine;
 public class Camera : MonoBehaviour
 {
     public bool followPlayer;
+    public Vector2 offset;
 
     private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+
     }
 
     // Update is called once per frame
@@ -18,7 +20,7 @@ public class Camera : MonoBehaviour
     {
         if (followPlayer)
         {
-            transform.position = Vector2.Lerp(transform.position,new Vector2(player.transform.position.x,transform.position.y),1f);
+            transform.position = Vector2.Lerp(transform.position,new Vector2(player.transform.position.x + offset.x,player.transform.position.y + offset.y),1f);
             transform.position = new Vector3(transform.position.x, transform.position.y, -10);
         }
     }
