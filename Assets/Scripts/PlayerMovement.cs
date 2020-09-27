@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         if (h < 0 && facingRight) Flip();
 
         if (h != 0 && IsGrounded()) anim.SetTrigger("Walking");
-        if (h == 0 && IsGrounded()) anim.SetTrigger("Idle");
+        if (h == 0) anim.SetTrigger("Idle");
     }
 
     bool IsGrounded()
